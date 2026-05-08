@@ -1,7 +1,7 @@
 {
 	"compatibility_date": "2026-05-08",
 	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "astro-blog",
+	"name": "blog",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"vars": {
 		"CONTENT_PROVIDER": "wpgraphql",
