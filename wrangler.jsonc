@@ -3,6 +3,20 @@
 	"compatibility_flags": ["global_fetch_strictly_public"],
 	"name": "astro-blog",
 	"main": "@astrojs/cloudflare/entrypoints/server",
+	"vars": {
+		"CONTENT_PROVIDER": "wpgraphql",
+		"CONTENT_CACHE_TTL_SEC": "5",
+		"WORDPRESS_GRAPHQL_ENDPOINT": "https://layoffbyai.site/index.php?graphql"
+	},
+	"env": {
+		"production": {
+			"vars": {
+				"CONTENT_PROVIDER": "wpgraphql",
+				"CONTENT_CACHE_TTL_SEC": "5",
+				"WORDPRESS_GRAPHQL_ENDPOINT": "https://layoffbyai.site/index.php?graphql"
+			}
+		}
+	},
 	"assets": {
 		"directory": "./dist",
 		"binding": "ASSETS"
