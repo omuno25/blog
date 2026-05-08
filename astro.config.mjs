@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 
 import tailwindcss from "@tailwindcss/vite";
 
+import cloudflare from "@astrojs/cloudflare";
+
 const src = fileURLToPath(new URL("./src", import.meta.url));
 
 // https://astro.build/config
@@ -32,4 +34,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: cloudflare(),
 });
