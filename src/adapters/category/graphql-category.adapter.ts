@@ -10,12 +10,12 @@ export class GraphqlCategoryAdapter implements CategoryAdapter {
     const data = await graphqlFetch<any>(CATEGORIES_QUERY);
     return (data.categories?.nodes ?? [])
       .map(mapGraphqlCategory)
-      .filter((category) => category.slug.toLowerCase() !== 'uncategorized');
+      .filter((category: Category) => category.slug.toLowerCase() !== 'uncategorized');
   }
 
   async getCategoryBySlug(slug: string): Promise<Category | null> {
     const categories = await this.getCategories();
-    return categories.find((category) => category.slug === slug) ?? null;
+    return categories.find((category: Category) => category.slug === slug) ?? null;
   }
 
   async getPostsByCategory(slug: string, limit?: number): Promise<BlogPost[]> {
