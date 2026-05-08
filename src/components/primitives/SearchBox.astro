@@ -1,0 +1,17 @@
+---
+interface Props {
+  placeholder?: string;
+}
+
+const { placeholder = 'Search docs...' } = Astro.props;
+---
+
+<div class="flex items-center rounded-md border border-border-soft bg-surface-low px-2 py-1.5">
+  <span class="material-symbols-outlined text-sm text-outline">search</span>
+  <input
+    type="text"
+    placeholder={placeholder}
+    class="focus-ring w-full border-0 bg-transparent px-2 text-sm text-text placeholder:text-outline"
+  />
+  <span class="rounded border border-border-soft px-1 text-[10px] text-outline">/</span>
+</div>

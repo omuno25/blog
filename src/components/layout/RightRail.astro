@@ -1,0 +1,28 @@
+---
+import type { NavLink } from '@ui-types';
+
+interface Props {
+  title?: string;
+  links: NavLink[];
+}
+
+const { title = 'Nội dung trang', links } = Astro.props;
+---
+
+<aside class="shell-right sticky top-14 h-[calc(100vh-3.5rem)] py-4">
+  <div class="flex h-full min-h-0 flex-col px-4">
+    <p class="mb-3 shrink-0 text-xs font-semibold uppercase tracking-wide text-outline">{title}</p>
+    <nav class="min-h-0 flex-1 overflow-y-auto pr-1 flex flex-col gap-1">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class={`focus-ring rounded px-2 py-1.5 text-xs text-text-muted hover:bg-surface-low hover:text-primary ${
+            link.subtitle === 'toc-child' ? 'pl-5' : ''
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</aside>

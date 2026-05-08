@@ -1,0 +1,35 @@
+---
+import SearchBox from '../primitives/SearchBox.astro';
+import type { NavLink } from '@ui-types';
+
+interface Props {
+  links: NavLink[];
+  title?: string;
+}
+
+const { links, title = 'DevDocs' } = Astro.props;
+---
+
+<header class="shell-header">
+  <div class="mx-auto flex h-full max-w-[1440px] items-center justify-between gap-4 px-4 md:px-6">
+    <div class="flex items-center gap-6">
+      <a href="/" class="focus-ring inline-flex items-center gap-2 text-lg font-bold text-text">
+        <span class="material-symbols-outlined text-primary">terminal</span>
+        {title}
+      </a>
+      <nav class="hidden items-center gap-5 text-sm font-medium md:flex">
+        {links.map((link) => (
+          <a href={link.href} class="focus-ring text-text-muted hover:text-primary">{link.label}</a>
+        ))}
+      </nav>
+    </div>
+    <div class="flex items-center gap-2">
+      <div class="hidden w-56 sm:block">
+        <SearchBox />
+      </div>
+      <button class="focus-ring rounded-md p-2 text-text-muted hover:bg-surface-low hover:text-primary" aria-label="Toggle theme">
+        <span class="material-symbols-outlined">dark_mode</span>
+      </button>
+    </div>
+  </div>
+</header>

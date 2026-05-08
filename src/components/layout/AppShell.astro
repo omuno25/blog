@@ -1,0 +1,24 @@
+---
+import TopNav from './TopNav.astro';
+import SideNav from './SideNav.astro';
+import RightRail from './RightRail.astro';
+import type { NavLink } from '@ui-types';
+
+interface Props {
+  topLinks: NavLink[];
+  sideLinks: NavLink[];
+  rightLinks?: NavLink[];
+  navTitle?: string;
+}
+
+const { topLinks, sideLinks, rightLinks = [], navTitle } = Astro.props;
+---
+
+<TopNav links={topLinks} title={navTitle} />
+<div class="mx-auto flex w-full max-w-[1400px]">
+  <SideNav links={sideLinks} />
+  <main class="min-w-0 flex-1 bg-white px-4 md:px-8">
+    <slot />
+  </main>
+  {rightLinks.length > 0 && <RightRail links={rightLinks} />}
+</div>

@@ -1,0 +1,73 @@
+---
+import SectionHeader from '../primitives/SectionHeader.astro';
+import StatCard from '../primitives/StatCard.astro';
+import ChipTag from '../primitives/ChipTag.astro';
+import { stats } from '@lib/mock/ui-data';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  variant?: 'search' | 'system' | 'llm-v1' | 'llm-v2' | 'llm-v3';
+}
+
+const { title, subtitle, variant = 'system' } = Astro.props;
+
+const titleStyles: Record<string, string> = {
+  search: 'text-text',
+  system: 'text-text',
+  'llm-v1': 'text-text',
+  'llm-v2': 'text-primary',
+  'llm-v3': 'text-text',
+};
+---
+
+<article class="prose-wrap space-y-8 py-8">
+  <nav class="flex items-center gap-2 text-sm text-text-muted">
+    <a href="/" class="focus-ring hover:text-primary">Home</a>
+    <span>/</span>
+    <a href="/design" class="focus-ring hover:text-primary">Design</a>
+    <span>/</span>
+    <span class="text-primary">{variant}</span>
+  </nav>
+
+  <header class="space-y-4" id="overview">
+    <h1 class={`text-4xl font-extrabold leading-tight ${titleStyles[variant]}`}>{title}</h1>
+    <p class="max-w-3xl text-lg text-text-muted">{subtitle}</p>
+    <div class="flex flex-wrap gap-2">
+      <ChipTag label="distributed-systems" />
+      <ChipTag label="ai-engineering" />
+      <ChipTag label="observability" />
+    </div>
+  </header>
+
+  <section id="core-concepts" class="space-y-4">
+    <SectionHeader title="Core Concepts" subtitle="Building blocks that matter in production" />
+    <div class="dense-card p-6 text-base leading-8 text-text-muted">
+      <p>
+        Robust platform design combines clean abstractions, explicit contracts, and pragmatic caching
+        boundaries. Teams reduce incident frequency by designing for degraded modes first, then layering
+        optimization once baseline correctness is proven.
+      </p>
+      <p class="mt-4">
+        For AI-enabled systems, prompt contracts, evaluation suites, and structured telemetry are first-class
+        concerns. This creates stable behavior under model upgrades and traffic spikes.
+      </p>
+    </div>
+  </section>
+
+  <section id="implementation" class="space-y-4">
+    <SectionHeader title="Implementation Notes" subtitle="Practical rollout guidance" />
+    <div class="grid gap-4 md:grid-cols-3">
+      {stats.map((stat) => <StatCard stat={stat} />)}
+    </div>
+  </section>
+
+  <section id="tradeoffs" class="space-y-4 pb-8">
+    <SectionHeader title="Tradeoffs" subtitle="Where architecture choices have real cost" />
+    <ul class="dense-card space-y-3 p-6 text-sm leading-7 text-text-muted">
+      <li>Over-aggressive caching lowers latency but can increase content staleness risk.</li>
+      <li>Heavy client interactivity improves UX but can hurt Core Web Vitals if not scoped.</li>
+      <li>Single-query GraphQL payloads simplify code but may inflate TTFB and payload size.</li>
+    </ul>
+  </section>
+</article>

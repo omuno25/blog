@@ -1,0 +1,33 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+
+const routes = [
+  '/design/devdocs/v1',
+  '/design/devdocs/v2',
+  '/design/devdocs/v3',
+  '/design/search/v1',
+  '/design/system-design/v1',
+  '/design/llm-orchestration/v1',
+  '/design/llm-orchestration/v2',
+  '/design/llm-orchestration/v3',
+];
+---
+
+<DashboardLayout title="Design Variants | Astro Blog">
+  <main class="prose-wrap px-4 py-10 md:px-8">
+    <h1 class="text-3xl font-extrabold text-text">Design Variants</h1>
+    <p class="mt-3 text-text-muted">
+      Componentized implementations from the `design/` references with direct external image support.
+    </p>
+
+    <ul class="mt-8 grid gap-3">
+      {routes.map((route) => (
+        <li>
+          <a href={route} class="focus-ring dense-card block p-4 text-sm font-medium text-text hover:border-primary">
+            {route}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</DashboardLayout>

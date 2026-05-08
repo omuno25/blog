@@ -1,0 +1,35 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import ArticleCard from '../../components/primitives/ArticleCard.astro';
+import { postService } from '@services/post.service';
+
+export async function getStaticPaths() {
+  const tags = await postService.getTags();
+  return tags.map((tag) => ({ params: { slug: tag.slug }, props: { tag } }));
+}
+
+const { tag } = Astro.props;
+const { items } = await postService.getPosts({ tagSlug: tag.slug });
+
+const posts = items.map((post) => ({
+  title: post.title,
+  excerpt: post.excerpt,
+  slug: post.slug,
+  date: post.date,
+  readingTime: post.readingTime,
+  image: post.image ?? '',
+  tags: post.tags.map((item) => item.slug),
+  category: post.category?.slug,
+}));
+---
+
+<DashboardLayout title={`Tag: #${tag.slug} | Astro Blog`}>
+  <main class="prose-wrap px-4 py-10 md:px-8">
+    <h1 class="text-3xl font-extrabold text-text">Tag: #{tag.slug}</h1>
+    <p class="mt-2 text-text-muted">{posts.length} article(s)</p>
+
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {posts.map((post) => <ArticleCard post={post} compact />)}
+    </div>
+  </main>
+</DashboardLayout>

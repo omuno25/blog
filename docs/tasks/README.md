@@ -1,0 +1,6 @@
+- Phân tích ui ux
+- Dựa vào gitbook
+- Sử dụng graphql trên wp
+- Api Graql trên Wp
+- Gọi astro server trước khi chạy
+- Add icon category workpress

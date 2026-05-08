@@ -1,0 +1,72 @@
+---
+import type { NavLink } from '@ui-types';
+
+interface Props {
+  items: NavLink[];
+  depth?: 1 | 2 | 3;
+}
+
+const { items, depth = 1 } = Astro.props;
+
+const MAX_DEPTH = 3;
+
+function hasActiveDescendant(item: NavLink): boolean {
+  if (item.active) return true;
+  if (!item.children?.length) return false;
+  return item.children.some(hasActiveDescendant);
+}
+
+const levelPadding: Record<number, string> = {
+  1: 'pl-0',
+  2: 'pl-3',
+  3: 'pl-6',
+};
+---
+
+<ul class="flex flex-col gap-1">
+  {items.map((item) => {
+    const canNest = depth < MAX_DEPTH && Boolean(item.children?.length);
+    const shouldOpen = item.defaultOpen || hasActiveDescendant(item);
+
+    return (
+      <li>
+        {canNest ? (
+          <details open={shouldOpen} class="group">
+            <summary
+              class={`focus-ring list-none cursor-pointer rounded-md px-3 py-2 transition-colors hover:bg-surface-low ${
+                item.active ? 'bg-primary/10 text-primary' : 'text-text-muted hover:text-text'
+              } ${levelPadding[depth]}`}
+            >
+              <span class="flex items-start gap-2">
+                {item.icon && depth === 1 && <span class="material-symbols-outlined mt-0.5 text-base">{item.icon}</span>}
+                <span class="min-w-0">
+                  <span class="block text-sm font-medium">{item.label}</span>
+                  {item.subtitle && <span class="block text-[11px] text-outline">{item.subtitle}</span>}
+                </span>
+                <span class="material-symbols-outlined ml-auto text-sm text-outline transition-transform group-open:rotate-180">expand_more</span>
+              </span>
+            </summary>
+            <div class="mt-1">
+              <Astro.self items={item.children ?? []} depth={(depth + 1) as 1 | 2 | 3} />
+            </div>
+          </details>
+        ) : (
+          <a
+            href={item.href}
+            class={`focus-ring block rounded-md px-3 py-2 transition-colors hover:bg-surface-low ${
+              item.active ? 'bg-primary/10 text-primary font-semibold' : 'text-text-muted hover:text-text'
+            } ${levelPadding[depth]}`}
+          >
+            <span class="flex items-start gap-2">
+              {item.icon && depth === 1 && <span class="material-symbols-outlined mt-0.5 text-base">{item.icon}</span>}
+              <span class="min-w-0">
+                <span class="block text-sm">{item.label}</span>
+                {item.subtitle && <span class="block text-[11px] text-outline">{item.subtitle}</span>}
+              </span>
+            </span>
+          </a>
+        )}
+      </li>
+    );
+  })}
+</ul>

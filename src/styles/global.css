@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #f9f9ff;
+  --color-surface: #f9f9ff;
+  --color-surface-low: #f1f3fc;
+  --color-surface-container: #ebedf7;
+  --color-surface-high: #e6e8f1;
+  --color-border-soft: #d7dae3;
+  --color-outline: #717785;
+
+  --color-primary: #005cb8;
+  --color-primary-strong: #1275e2;
+  --color-secondary: #465f88;
+  --color-tertiary: #9a4600;
+
+  --color-text: #181c22;
+  --color-text-muted: #414753;
+  --color-text-inverse: #eef0fa;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --spacing-2xs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+}
+
+:root {
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+body {
+  @apply bg-background text-text antialiased;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 450, 'GRAD' 0, 'opsz' 20;
+  font-size: 18px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+@layer components {
+  .shell-header {
+    @apply sticky top-0 z-40 h-14 md:h-16 border-b border-border-soft bg-surface/95 backdrop-blur;
+  }
+
+  .shell-left {
+    @apply hidden md:flex md:w-60 lg:w-64 shrink-0 flex-col border-r border-border-soft bg-surface;
+  }
+
+  .shell-right {
+    @apply hidden lg:block lg:w-60 xl:w-64 shrink-0 border-l border-border-soft bg-surface;
+  }
+
+  .dense-card {
+    @apply rounded-xl border border-border-soft bg-white shadow-[0_8px_24px_rgba(12,18,36,0.06)];
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-border-soft bg-surface-low px-2 py-1 text-xs text-text-muted;
+  }
+
+  .prose-wrap {
+    @apply mx-auto w-full max-w-5xl;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-0 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4 {
+    @apply mt-8 mb-3 font-bold leading-tight text-text;
+  }
+
+  .post-content h1 {
+    @apply text-4xl;
+  }
+
+  .post-content h2 {
+    @apply text-3xl;
+  }
+
+  .post-content h3 {
+    @apply text-2xl;
+  }
+
+  .post-content p {
+    @apply my-4;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    @apply my-4 ml-6;
+  }
+
+  .post-content ul {
+    @apply list-disc;
+  }
+
+  .post-content ol {
+    @apply list-decimal;
+  }
+
+  .post-content a {
+    @apply text-primary underline underline-offset-2 hover:text-primary-strong;
+  }
+
+  .post-content blockquote {
+    @apply my-5 border-l-4 border-border-soft pl-4 italic text-text;
+  }
+
+  .post-content pre {
+    @apply my-5 overflow-x-auto rounded-lg bg-surface-low p-4 text-sm text-text;
+  }
+
+  .post-content code {
+    @apply rounded bg-surface-low px-1 py-0.5 text-[0.95em];
+  }
+
+  .post-content hr {
+    @apply my-8 border-border-soft;
+  }
+
+  .post-content figure.wp-block-table {
+    @apply my-6 overflow-x-auto;
+  }
+
+  .post-content table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .post-content th,
+  .post-content td {
+    @apply border border-border-soft px-3 py-2 align-top;
+  }
+
+  .post-content th {
+    @apply bg-surface-low text-left font-semibold text-text;
+  }
+
+  .post-content td {
+    @apply text-text-muted;
+  }
+}

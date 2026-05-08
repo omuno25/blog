@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevDocs | Documentation Engine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;family=Geist:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#181c22",
+                        "background": "#f9f9ff",
+                        "inverse-surface": "#2d3037",
+                        "tertiary-container": "#c05900",
+                        "on-secondary-fixed-variant": "#2d476f",
+                        "on-primary-fixed": "#001b3e",
+                        "on-primary-container": "#000512",
+                        "on-error": "#ffffff",
+                        "tertiary": "#9a4600",
+                        "on-surface-variant": "#414753",
+                        "tertiary-fixed": "#ffdbc9",
+                        "primary-fixed": "#d6e3ff",
+                        "surface-container-high": "#e6e8f1",
+                        "primary-fixed-dim": "#aac7ff",
+                        "on-tertiary-fixed": "#321200",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#0d0300",
+                        "on-secondary-container": "#3f5881",
+                        "on-secondary-fixed": "#001b3d",
+                        "surface-tint": "#005db8",
+                        "inverse-primary": "#aac7ff",
+                        "tertiary-fixed-dim": "#ffb68c",
+                        "outline": "#717785",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#00458d",
+                        "surface-container-low": "#f1f3fc",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef0fa",
+                        "primary-container": "#1275e2",
+                        "surface-container": "#ebedf7",
+                        "surface": "#f9f9ff",
+                        "secondary": "#465f88",
+                        "surface-container-highest": "#e0e2eb",
+                        "outline-variant": "#c1c6d5",
+                        "error": "#ba1a1a",
+                        "primary": "#005cb8",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-fixed": "#d6e3ff",
+                        "secondary-container": "#b6d0ff",
+                        "on-surface": "#181c22",
+                        "on-tertiary-fixed-variant": "#763400",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e0e2eb",
+                        "surface-dim": "#d7dae3",
+                        "secondary-fixed-dim": "#aec7f7",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "margin": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "content-max": "768px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "code": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 z-[60] bg-on-background/40 backdrop-blur-sm flex items-start justify-center pt-[102px] px-md">
+<!-- CMD+K Modal - Updated for Interlink Modern -->
+<div class="w-full max-w-[640px] bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden flex flex-col border border-outline-variant">
+<!-- Search Input Header -->
+<div class="flex items-center px-lg h-[64px] border-b border-outline-variant gap-md">
+<span class="material-symbols-outlined text-primary text-[24px]">search</span>
+<input autofocus="" class="flex-1 bg-transparent border-none focus:ring-0 text-body-lg font-body-lg placeholder:text-outline text-on-surface" placeholder="Search documentation, articles, and notes..." type="text"/>
+<div class="flex items-center gap-xs">
+<kbd class="px-sm py-[2px] bg-surface-container border border-outline-variant text-[10px] font-medium text-on-surface-variant rounded">ESC</kbd>
+</div>
+</div>
+<!-- Results List -->
+<div class="max-h-[480px] overflow-y-auto py-md scrollbar-hide">
+<!-- Category: Documentation -->
+<div class="px-lg pb-md">
+<h4 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-sm">Documentation</h4>
+<div class="flex flex-col gap-[2px]">
+<div class="flex items-center justify-between p-sm bg-primary-container/10 border-l-[3px] border-primary group cursor-pointer rounded-r-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="book" style="font-variation-settings: 'FILL' 1;">book</span>
+<div class="flex flex-col">
+<span class="text-body-md font-semibold text-on-surface">Introduction to API Engineering</span>
+<span class="text-[12px] text-on-surface-variant">Core Concepts • Guides</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary transition-colors">subdirectory_arrow_left</span>
+</div>
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-high transition-all cursor-pointer group rounded-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline" data-icon="terminal">terminal</span>
+<div class="flex flex-col">
+<span class="text-body-md font-medium text-on-surface">CLI Authentication Flow</span>
+<span class="text-[12px] text-on-surface-variant">Security • Configuration</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Articles -->
+<div class="px-lg pb-md">
+<h4 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-sm">Articles</h4>
+<div class="flex flex-col gap-[2px]">
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-high transition-all cursor-pointer group rounded-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline" data-icon="article">article</span>
+<div class="flex flex-col">
+<span class="text-body-md font-medium text-on-surface">Best Practices for Headless CMS</span>
+<span class="text-[12px] text-on-surface-variant">Blog • 12 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category: Notes -->
+<div class="px-lg pb-md">
+<h4 class="font-label-md text-label-md text-outline uppercase tracking-wider mb-sm">Notes</h4>
+<div class="flex flex-col gap-[2px]">
+<div class="flex items-center justify-between p-sm hover:bg-surface-container-high transition-all cursor-pointer group rounded-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline" data-icon="edit_note">edit_note</span>
+<div class="flex flex-col">
+<span class="text-body-md font-medium text-on-surface">Architecture Review Q4</span>
+<span class="text-[12px] text-on-surface-variant">Personal • Updated yesterday</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="flex items-center justify-between px-lg h-[44px] bg-surface-container-low border-t border-outline-variant">
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-xs">
+<kbd class="px-sm py-[1px] bg-surface-container-lowest border border-outline-variant text-[10px] font-medium text-on-surface-variant rounded">↑↓</kbd>
+<span class="text-[11px] text-on-surface-variant font-label-md">Navigate</span>
+</div>
+<div class="flex items-center gap-xs">
+<kbd class="px-sm py-[1px] bg-surface-container-lowest border border-outline-variant text-[10px] font-medium text-on-surface-variant rounded">Enter</kbd>
+<span class="text-[11px] text-on-surface-variant font-label-md">Select</span>
+</div>
+</div>
+<div class="flex items-center gap-xs">
+<span class="text-[11px] text-on-surface-variant font-label-md italic">Search powered by DevDocs Engine</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Content -->
+<header class="bg-surface text-primary font-body-md text-body-md top-0 sticky z-50 border-b border-outline-variant flex justify-between items-center w-full px-lg h-16">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">DevDocs</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Guides</a>
+<a class="text-primary font-semibold border-b-2 border-primary pb-2" href="#">API</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Blog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Changelog</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<div class="flex items-center gap-sm bg-surface-container px-sm py-1 border border-outline-variant rounded-lg cursor-pointer hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="search">search</span>
+<span class="text-body-md text-outline pr-xl">Search documentation...</span>
+<kbd class="px-xs py-[1px] bg-surface-container-lowest border border-outline-variant text-[10px] text-outline rounded">⌘K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined p-sm hover:text-primary transition-colors" data-icon="terminal">terminal</button>
+<button class="material-symbols-outlined p-sm hover:text-primary transition-colors" data-icon="dark_mode">dark_mode</button>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="bg-surface h-screen w-64 left-0 sticky top-16 border-r border-outline-variant flex flex-col py-md overflow-y-auto">
+<div class="px-lg pb-lg">
+<div class="text-on-surface font-bold text-headline-md">Documentation</div>
+<div class="text-on-surface-variant text-[11px] opacity-70">v2.4.0</div>
+</div>
+<nav class="flex flex-col flex-1">
+<div class="text-on-surface-variant py-2 px-4 hover:bg-surface-container transition-all cursor-pointer active:scale-95 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="info">info</span> Introduction
+                </div>
+<div class="text-primary font-bold bg-primary-container/10 border-l-[3px] border-primary py-2 px-4 cursor-pointer active:scale-95 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span> AI Engineering
+                </div>
+<div class="text-on-surface-variant py-2 px-4 hover:bg-surface-container transition-all cursor-pointer active:scale-95 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="layers">layers</span> Frontend
+                </div>
+<div class="text-on-surface-variant py-2 px-4 hover:bg-surface-container transition-all cursor-pointer active:scale-95 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="dns">dns</span> Backend
+                </div>
+<div class="text-on-surface-variant py-2 px-4 hover:bg-surface-container transition-all cursor-pointer active:scale-95 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="rocket_launch">rocket_launch</span> Deployment
+                </div>
+</nav>
+<div class="mt-auto px-lg pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm py-2 text-on-surface-variant hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="forum">forum</span> Community
+                </div>
+<div class="flex items-center gap-sm py-2 text-on-surface-variant hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="code">code</span> GitHub
+                </div>
+<button class="w-full mt-md bg-primary text-on-primary py-sm rounded-lg font-label-md hover:opacity-90 transition-opacity">Submit Feedback</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-lg py-xl">
+<div class="max-w-content-max mx-auto">
+<nav class="flex items-center gap-xs text-on-surface-variant text-label-md mb-md">
+<span class="hover:text-primary cursor-pointer">Docs</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="hover:text-primary cursor-pointer">AI Engineering</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-medium">Authentication Flow</span>
+</nav>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-md">AI Model Authentication</h1>
+<p class="text-body-lg text-on-surface-variant mb-xl leading-relaxed">
+                    Explore the underlying security architecture used to authenticate requests between your client applications and our edge-based AI inference models. This guide covers tokens, session management, and rate limiting parameters.
+                </p>
+<!-- Bento Grid Layout for Features -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<div class="md:col-span-2 p-lg bg-surface-container border border-outline-variant rounded-xl flex flex-col gap-sm hover:border-primary transition-all cursor-pointer group">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mutual TLS Authentication</h3>
+<p class="text-body-md text-on-surface-variant">The highest security tier for enterprise infrastructure, ensuring bidirectional verification between client and inference server.</p>
+</div>
+<div class="p-lg bg-surface-container border border-outline-variant rounded-xl flex flex-col gap-sm hover:border-primary transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-tertiary text-[32px]" data-icon="key">key</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">API Keys</h3>
+<p class="text-body-md text-on-surface-variant">Standard bearer tokens for rapid prototyping and public client access.</p>
+</div>
+</div>
+<!-- Code Block Section -->
+<div class="mb-xl">
+<div class="flex items-center justify-between px-md py-sm bg-surface-variant/50 border border-outline-variant border-b-0 rounded-t-lg">
+<span class="font-code text-label-md text-on-surface-variant">auth.config.ts</span>
+<button class="flex items-center gap-xs font-label-md text-[11px] text-primary hover:bg-primary-container/10 px-sm py-1 rounded transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="content_copy">content_copy</span> Copy
+                        </button>
+</div>
+<div class="bg-surface-container-highest border border-outline-variant p-lg rounded-b-lg overflow-x-auto">
+<pre class="font-code text-[14px] text-on-surface"><code class="language-typescript"><span class="text-primary font-semibold">import</span> { AIAuthProvider } <span class="text-primary font-semibold">from</span> <span class="text-tertiary">"@devdocs/ai-sdk"</span>;
+
+<span class="text-primary font-semibold">export const</span> auth = <span class="text-primary font-semibold">new</span> AIAuthProvider({
+  apiKey: process.env.DEVDOCS_API_KEY,
+  region: <span class="text-tertiary">"us-east-1"</span>,
+  timeout: <span class="text-tertiary">5000</span>
+});</code></pre>
+</div>
+</div>
+<div class="mb-xl">
+<img alt="" class="w-full h-[400px] object-cover rounded-xl border border-outline-variant" data-alt="A clean high-tech visualization of data flowing through a neural network in a minimalist architectural style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4BShjxYmrCCiRKPBE0NhMZBBUDug310qIdHxv2SLTmLtz0GNQb_bVqW519REAuMSKMR2bbVOdo9qIc0XtfPNpg2De49DRG1whjETR3pB4qL7H_2k7dlRZaIrVpphgBCDRa2NniWAWfz5f0uId67dqviVDnNiGjt_QML0gP5sLa4qfdfYLjnvJqSFXYXUmZTza0JhHesyq0G6E173P3CBdbeInJLxxnaE_O3HsKCFj20mc_MWS__Ck1Vj8-5bBS55OXAFeVRi93dg"/>
+</div>
+<div class="p-lg bg-primary-container/10 border-l-[3px] border-primary mb-xl rounded-r-lg">
+<div class="flex items-center gap-sm mb-xs text-primary">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span class="font-label-md uppercase tracking-widest text-[11px] font-bold">Important Note</span>
+</div>
+<p class="text-body-md text-on-surface">Never expose your <code class="bg-surface-variant px-1 rounded">DEVDOCS_API_KEY</code> on the client side. Use environment variables and server-side functions to handle all authenticated AI calls.</p>
+</div>
+</div>
+</main>
+<!-- Table of Contents Sidebar -->
+<aside class="hidden lg:block h-screen w-48 right-0 sticky top-16 border-l border-outline-variant flex flex-col gap-sm py-md ml-lg">
+<div class="text-on-surface-variant font-semibold px-4 mb-sm">On This Page</div>
+<nav class="flex flex-col gap-sm">
+<a class="text-primary font-medium border-l-2 border-primary pl-4" href="#">Overview</a>
+<a class="text-on-surface-variant pl-4 hover:text-on-surface transition-colors" href="#">Installation</a>
+<a class="text-on-surface-variant pl-4 hover:text-on-surface transition-colors" href="#">Quick Start</a>
+<a class="text-on-surface-variant pl-4 hover:text-on-surface transition-colors" href="#">Configuration</a>
+</nav>
+<div class="mt-xl px-4">
+<div class="p-md bg-secondary-container/20 rounded-lg border border-outline-variant">
+<span class="text-[11px] font-bold text-primary block mb-xs">PRO TIP</span>
+<span class="text-[11px] text-on-surface-variant leading-tight">Press <kbd class="bg-surface-variant px-1 rounded">⌘K</kbd> anywhere to quickly find documentation.</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer -->
+<footer class="bg-surface text-primary font-body-md text-body-md border-t border-outline-variant mt-2xl">
+<div class="max-w-content-max mx-auto py-xl px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<span class="text-on-surface-variant">© 2024 DevDocs Documentation Engine. Built for developers.</span>
+<div class="flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Status</a>
+</div>
+</div>
+</footer>
+</body></html>

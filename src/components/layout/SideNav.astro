@@ -1,0 +1,22 @@
+---
+import type { NavLink } from '@ui-types';
+import SideNavTree from './SideNavTree.astro';
+
+interface Props {
+  title?: string;
+  version?: string;
+  links: NavLink[];
+}
+
+const { title = 'Tài liệu', version = 'v1.0.0', links } = Astro.props;
+---
+
+<aside class="shell-left h-[calc(100vh-3.5rem)] md:top-14 md:sticky md:py-4 flex min-h-0 flex-col">
+  <div class="flex items-center justify-between gap-2 px-4 pb-4 shrink-0">
+    <p class="text-[11px] font-bold uppercase tracking-wider text-text-muted">{title}</p>
+    <span class="inline-flex rounded bg-surface-container px-2 py-1 text-[10px] font-bold text-text-muted">{version}</span>
+  </div>
+  <nav class="min-h-0 flex-1 overflow-y-auto px-2">
+    <SideNavTree items={links} depth={1} />
+  </nav>
+</aside>

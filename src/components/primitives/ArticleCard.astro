@@ -1,0 +1,38 @@
+---
+import ChipTag from './ChipTag.astro';
+import type { ArticleCardData } from '@ui-types';
+import { formatDisplayDate } from '@shared/utils/date';
+
+interface Props {
+  post: ArticleCardData;
+  compact?: boolean;
+}
+
+const { post, compact = false } = Astro.props;
+const formattedDate = formatDisplayDate(post.date);
+---
+
+<article class="dense-card overflow-hidden">
+  <a href={`/blog/${post.slug}`} class="block">
+    <img
+      src={post.image}
+      alt={post.title}
+      loading="lazy"
+      class={`w-full object-cover ${compact ? 'h-40' : 'h-52'}`}
+      onerror="this.style.display='none'"
+    />
+  </a>
+  <div class="space-y-3 p-4">
+    <div class="flex flex-wrap gap-2">
+      {post.tags.slice(0, 3).map((tag) => <ChipTag label={tag} />)}
+    </div>
+    <h3 class="text-lg font-bold leading-snug text-text">
+      <a class="focus-ring hover:text-primary" href={`/blog/${post.slug}`}>{post.title}</a>
+    </h3>
+    <p class="text-sm leading-relaxed text-text-muted">{post.excerpt}</p>
+    <div class="flex items-center justify-between text-xs text-outline">
+      <span>{formattedDate}</span>
+      <span>{post.readingTime}</span>
+    </div>
+  </div>
+</article>

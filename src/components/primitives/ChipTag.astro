@@ -1,0 +1,11 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+}
+
+const { label, href } = Astro.props;
+const tagHref = href ?? `/tag/${encodeURIComponent(label)}`;
+---
+
+<a href={tagHref} class="chip focus-ring hover:border-primary hover:text-primary transition-colors">#{label}</a>

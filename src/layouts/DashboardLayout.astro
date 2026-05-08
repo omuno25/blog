@@ -1,0 +1,80 @@
+---
+import Layout from './Layout.astro';
+import AppShell from '../components/layout/AppShell.astro';
+import { tocNav, topNav } from '@lib/mock/ui-data';
+import type { NavLink } from '@ui-types';
+import type { Category } from '@models';
+import { categoryAdapter } from '@adapters/category';
+
+interface Props {
+  title?: string;
+  description?: string;
+  navTitle?: string;
+  topLinks?: NavLink[];
+  sideLinks?: NavLink[];
+  rightLinks?: NavLink[];
+}
+
+const {
+  title = 'DevDocs | Dashboard',
+  description = 'Unified dashboard shell built with Astro AppShell',
+  navTitle = 'DevDocs',
+  topLinks = topNav,
+  sideLinks = [],
+  rightLinks = tocNav,
+} = Astro.props;
+
+let resolvedSideLinks: NavLink[] = sideLinks;
+
+function mapCategoryToNavLink(category: Category, childrenMap: Map<string, Category[]>, depth: number): NavLink {
+  const children = depth < 3 ? (childrenMap.get(category.id ?? '') ?? []) : [];
+  const childLinks = children.map((child) => mapCategoryToNavLink(child, childrenMap, depth + 1));
+
+  return {
+    label: category.name,
+    subtitle: category.description || '',
+    href: `/category/${category.slug}`,
+    icon: category.icon || 'folder',
+    defaultOpen: depth === 1,
+    ...(childLinks.length > 0 ? { children: childLinks } : {}),
+  };
+}
+
+function resolveCategoryTreeLinks(categories: Category[]): NavLink[] {
+  const byId = new Map<string, Category>();
+  const childrenMap = new Map<string, Category[]>();
+  const roots: Category[] = [];
+
+  for (const category of categories) {
+    if (category.id) byId.set(category.id, category);
+  }
+
+  for (const category of categories) {
+    if (!category.parentId || !byId.has(category.parentId)) {
+      roots.push(category);
+      continue;
+    }
+
+    const siblings = childrenMap.get(category.parentId) ?? [];
+    siblings.push(category);
+    childrenMap.set(category.parentId, siblings);
+  }
+
+  return roots.map((root) => mapCategoryToNavLink(root, childrenMap, 1));
+}
+
+try {
+  const categories = await categoryAdapter.getCategories();
+  if (categories.length > 0) {
+    resolvedSideLinks = resolveCategoryTreeLinks(categories);
+  }
+} catch {
+  resolvedSideLinks = sideLinks;
+}
+---
+
+<Layout title={title} description={description}>
+  <AppShell topLinks={topLinks} sideLinks={resolvedSideLinks} rightLinks={rightLinks} navTitle={navTitle}>
+    <slot />
+  </AppShell>
+</Layout>

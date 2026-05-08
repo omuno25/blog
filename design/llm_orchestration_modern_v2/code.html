@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#181c22",
+                    "background": "#f9f9ff",
+                    "inverse-surface": "#2d3037",
+                    "tertiary-container": "#c05900",
+                    "on-secondary-fixed-variant": "#2d476f",
+                    "on-primary-fixed": "#001b3e",
+                    "on-primary-container": "#000512",
+                    "on-error": "#ffffff",
+                    "tertiary": "#9a4600",
+                    "on-surface-variant": "#414753",
+                    "tertiary-fixed": "#ffdbc9",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-high": "#e6e8f1",
+                    "primary-fixed-dim": "#aac7ff",
+                    "on-tertiary-fixed": "#321200",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#0d0300",
+                    "on-secondary-container": "#3f5881",
+                    "on-secondary-fixed": "#001b3d",
+                    "surface-tint": "#005db8",
+                    "inverse-primary": "#aac7ff",
+                    "tertiary-fixed-dim": "#ffb68c",
+                    "outline": "#717785",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#00458d",
+                    "surface-container-low": "#f1f3fc",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef0fa",
+                    "primary-container": "#1275e2",
+                    "surface-container": "#ebedf7",
+                    "surface": "#f9f9ff",
+                    "secondary": "#465f88",
+                    "surface-container-highest": "#e0e2eb",
+                    "outline-variant": "#c1c6d5",
+                    "error": "#ba1a1a",
+                    "primary": "#005cb8",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed": "#d6e3ff",
+                    "secondary-container": "#b6d0ff",
+                    "on-surface": "#181c22",
+                    "on-tertiary-fixed-variant": "#763400",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e0e2eb",
+                    "surface-dim": "#d7dae3",
+                    "secondary-fixed-dim": "#aec7f7",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "margin": "24px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .prose code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            background-color: #ebedf7;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
+        .prose pre {
+            background-color: #ffffff;
+            border: 1px solid #c1c6d5;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-surface font-body-md min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Reading Progress Bar -->
+<div class="fixed top-0 left-0 w-full h-1 bg-surface-container-highest z-[60]">
+<div class="h-full bg-primary" style="width: 35%;"></div>
+</div>
+<!-- Top Navigation Bar -->
+<header class="bg-surface-bright/80 backdrop-blur-md top-0 sticky z-50 border-b border-outline-variant flex justify-between items-center w-full px-lg h-16">
+<div class="flex items-center gap-md">
+<span class="text-headline-md text-primary font-bold tracking-tight">DevDocs</span>
+<nav class="hidden md:flex gap-lg ml-lg items-center">
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Guides</a>
+<a class="text-body-md text-primary font-semibold relative py-2" href="#">
+                    API
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full"></span>
+</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Blog</a>
+<a class="text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Changelog</a>
+</nav>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative group hidden md:block">
+<input class="bg-surface-container-low border border-outline-variant rounded-full px-lg py-xs text-body-md w-64 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Search docs..." type="text"/>
+<span class="absolute right-4 top-2 text-label-md text-outline pointer-events-none opacity-50">⌘K</span>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+<button class="p-2 hover:bg-surface-container rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="light_mode">light_mode</span>
+</button>
+</div>
+</header>
+<div class="flex max-w-[1440px] mx-auto">
+<!-- Left Sidebar Navigation -->
+<aside class="h-[calc(100vh-64px)] w-64 sticky top-16 flex flex-col py-lg overflow-y-auto hidden md:flex shrink-0">
+<div class="px-lg mb-lg">
+<span class="text-outline uppercase tracking-wider font-bold text-[10px]">Documentation</span>
+<p class="text-on-surface-variant text-[11px] font-medium mt-1">v2.4.0</p>
+</div>
+<nav class="flex flex-col">
+<a class="flex items-center gap-sm text-on-surface-variant py-2 px-lg text-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined opacity-60" data-icon="info">info</span> Introduction
+                </a>
+<a class="flex items-center gap-sm text-primary font-semibold py-2 px-lg text-body-md bg-primary-container/5 rounded-r-full mr-4" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span> AI Engineering
+                </a>
+<div class="flex flex-col ml-10 mt-1 mb-2 border-l border-outline-variant/50">
+<a class="py-1.5 px-4 text-on-surface-variant text-body-md hover:text-primary transition-colors" href="#">LLM Fundamentals</a>
+<a class="py-1.5 px-4 text-primary font-medium text-body-md bg-primary-fixed/30 rounded-r-full mr-4" href="#">Prompt Engineering</a>
+<a class="py-1.5 px-4 text-on-surface-variant text-body-md hover:text-primary transition-colors" href="#">Vector Databases</a>
+</div>
+<a class="flex items-center gap-sm text-on-surface-variant py-2 px-lg text-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined opacity-60" data-icon="layers">layers</span> Frontend
+                </a>
+<a class="flex items-center gap-sm text-on-surface-variant py-2 px-lg text-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined opacity-60" data-icon="dns">dns</span> Backend
+                </a>
+<a class="flex items-center gap-sm text-on-surface-variant py-2 px-lg text-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined opacity-60" data-icon="rocket_launch">rocket_launch</span> Deployment
+                </a>
+</nav>
+<div class="mt-auto px-lg pt-xl space-y-md">
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg text-label-md font-semibold hover:shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">
+                    Submit Feedback
+                </button>
+<div class="flex flex-col gap-xs pb-lg border-t border-outline-variant/30 pt-md">
+<a class="flex items-center gap-sm text-on-surface-variant py-1 text-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined opacity-60" data-icon="forum">forum</span> Community
+                    </a>
+<a class="flex items-center gap-sm text-on-surface-variant py-1 text-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined opacity-60" data-icon="code">code</span> GitHub
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 min-w-0 bg-surface-bright">
+<div class="max-w-[800px] mx-auto px-lg py-xl">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-xs text-outline text-label-md mb-xl">
+<a class="hover:text-primary transition-colors" href="#">Docs</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">AI Engineering</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface-variant font-medium">Prompt Engineering</span>
+</nav>
+<!-- Article Header -->
+<header class="mb-xl">
+<h1 class="text-headline-lg text-primary mb-md leading-tight">Mastering Prompt Engineering for AI Engineering</h1>
+<p class="text-body-lg text-on-surface-variant leading-relaxed font-light">A comprehensive guide to optimizing large language model responses through systematic iterative prompting and evaluation frameworks.</p>
+<div class="flex items-center gap-xl mt-xl pt-lg border-t border-outline-variant/30">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+</div>
+<span class="text-label-md font-semibold">Engineering Team</span>
+</div>
+<div class="flex gap-lg">
+<span class="text-label-md text-outline">May 24, 2024</span>
+<span class="text-label-md text-outline">12 min read</span>
+</div>
+</div>
+</header>
+<!-- Article Body -->
+<div class="prose max-w-none text-on-surface space-y-lg leading-relaxed">
+<p class="text-body-lg">
+                        Prompt engineering is no longer just about "getting the right words." In modern AI engineering, it involves a rigorous approach to structure, constraints, and contextual grounding. As we move towards agentic workflows, the role of the prompt shifts from a simple instruction to a complex system specification.
+                    </p>
+<h2 class="text-headline-md text-primary pt-lg border-b border-outline-variant/50 pb-2">The Components of an Engineering Prompt</h2>
+<p>A production-ready prompt typically consists of four core elements that ensure reliability and performance:</p>
+<ul class="list-none space-y-md my-lg">
+<li class="flex items-start gap-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+<span><strong>Instruction:</strong> A specific task or directive for the model to perform.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+<span><strong>Context:</strong> Background information or grounding data for the LLM.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+<span><strong>Input Data:</strong> The dynamic data that needs processing.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+<span><strong>Output Indicator:</strong> The structural requirement for the response (e.g., JSON, YAML).</span>
+</li>
+</ul>
+<!-- Info Callout -->
+<div class="bg-primary/5 border-l-4 border-primary p-lg my-xl rounded-r-xl">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="info">info</span>
+<div>
+<p class="text-body-lg font-bold text-primary mb-1">Pro Tip: Use Delimiters</p>
+<p class="text-body-md text-on-surface-variant">Always use triple quotes (""") or XML tags to separate the instruction from the data. This prevents prompt injection and helps the model understand the boundaries of the input.</p>
+</div>
+</div>
+</div>
+<h3 class="text-headline-md text-on-surface pt-md">Implementation Example</h3>
+<p>The following Python snippet demonstrates how to wrap a system prompt using our core SDK, ensuring type-safe outputs via Pydantic grounding.</p>
+<!-- Code Block -->
+<div class="my-lg border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="bg-surface-container px-lg py-2 border-b border-outline-variant flex justify-between items-center">
+<span class="text-label-md font-mono text-outline uppercase tracking-wider">prompt_runner.py</span>
+<button class="text-primary hover:bg-primary/10 px-3 py-1 rounded-full transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="content_copy">content_copy</span>
+<span class="text-label-md">Copy</span>
+</button>
+</div>
+<pre class="p-lg bg-white text-on-surface overflow-x-auto text-sm leading-relaxed"><code><span class="text-primary font-bold">from</span> devdocs_ai <span class="text-primary font-bold">import</span> PromptManager, ModelType
+
+<span class="text-outline"># Initialize the prompt manager with safety filters</span>
+pm = PromptManager(model=ModelType.GPT_4_TURBO)
+
+<span class="text-primary font-bold">async def</span> <span class="text-secondary font-bold">execute_reasoning_step</span>(user_input: str):
+    system_prompt = <span class="text-tertiary">"""
+    You are a technical reasoning engine. 
+    Analyze the input and return a JSON object with:
+    - classification: string
+    - confidence: float
+    """</span>
+    
+    response = <span class="text-primary font-bold">await</span> pm.run(
+        template=system_prompt,
+        inputs={<span class="text-tertiary">"user_query"</span>: user_input},
+        output_format=<span class="text-tertiary">"json"</span>
+    )
+    <span class="text-primary font-bold">return</span> response</code></pre>
+</div>
+<!-- Warning Callout -->
+<div class="bg-error-container/10 border-l-4 border-error p-lg my-xl rounded-r-xl">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-error mt-1" data-icon="warning">warning</span>
+<div>
+<p class="text-body-lg font-bold text-error mb-1">Token Management Warning</p>
+<p class="text-body-md text-on-surface-variant">Large system prompts can significantly increase latency and costs. Monitor your token usage in production environments and prune irrelevant context periodically.</p>
+</div>
+</div>
+</div>
+<h2 class="text-headline-md text-primary pt-lg border-b border-outline-variant/50 pb-2">Advanced Evaluation</h2>
+<p>Success in AI engineering is measured by evaluation metrics (Evals). Rather than anecdotal "vibes," engineers should use LLM-as-a-judge patterns or deterministic checking.</p>
+<div class="relative group my-xl">
+<img class="w-full h-80 object-cover rounded-xl border border-outline-variant grayscale hover:grayscale-0 transition-all duration-700" data-alt="AI visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPSKJNP78ayC7RoOveZYVQ3WFg1Kbh8oPKBBI8BR1Ryty4X7TXz2aogveVagqH9HXgKRaA_mWxQn1j0ZffA9obWMwzMDD6CFr3jjMmG4MlVx_NZZiCxVYCvjvsI3Q_bMGeJVNFCAibs51jFwm9zH-rs_lQns36zddsQVjFXXW9OqtnBxzrH6ebdCIGxnpDKGadDMSl--aKIAmsHX6eQCLYzC4LgLo98WRwzgy1HthPmBYVsgE2RCnt3M20ht4t1-3H-BqaUY5tJAo"/>
+<div class="absolute inset-0 rounded-xl bg-primary/5 pointer-events-none"></div>
+</div>
+<p>To implement a robust evaluation pipeline, we recommend the <strong>Recursive Prompt Testing</strong> framework. This allows for automated A/B testing of prompt variations against a gold standard dataset.</p>
+</div>
+<!-- Previous/Next Navigation -->
+<div class="flex flex-col md:flex-row justify-between gap-lg mt-2xl pt-xl border-t border-outline-variant/30">
+<a class="group flex flex-col items-start gap-2 p-xl border border-outline-variant rounded-xl hover:border-primary hover:bg-primary/5 transition-all flex-1" href="#">
+<span class="text-label-md text-outline group-hover:text-primary flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+                            Previous
+                        </span>
+<span class="text-body-lg font-bold text-on-surface">Introduction to AI Models</span>
+</a>
+<a class="group flex flex-col items-end gap-2 p-xl border border-outline-variant rounded-xl hover:border-primary hover:bg-primary/5 transition-all flex-1 text-right" href="#">
+<span class="text-label-md text-outline group-hover:text-primary flex items-center gap-1 transition-colors">
+                            Next
+                            <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+<span class="text-body-lg font-bold text-on-surface">Fine-Tuning Strategies</span>
+</a>
+</div>
+<!-- Simple Footer -->
+<footer class="mt-2xl py-xl border-t border-outline-variant/30 text-center md:text-left">
+<div class="flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="space-y-1">
+<span class="text-headline-md text-primary font-bold">DevDocs</span>
+<p class="text-label-md text-outline">© 2024 DevDocs Documentation Engine. Built for developers.</p>
+</div>
+<div class="flex gap-lg">
+<a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Status</a>
+</div>
+</div>
+</footer>
+</div>
+</main>
+<!-- Right Side - Table of Contents -->
+<aside class="h-[calc(100vh-64px)] w-56 sticky top-16 hidden lg:block border-l border-outline-variant/30 bg-surface-bright/50">
+<div class="flex flex-col gap-lg py-xl px-lg">
+<span class="text-outline uppercase tracking-wider font-bold text-[10px]">On This Page</span>
+<nav class="flex flex-col gap-3">
+<a class="text-on-surface-variant text-body-md hover:text-primary transition-colors pl-4 border-l border-transparent" href="#">Introduction</a>
+<a class="text-primary font-bold text-body-md border-l-2 border-primary pl-4 -ml-[1.5px]" href="#">Prompt Engineering</a>
+<a class="text-on-surface-variant text-body-md hover:text-primary transition-colors pl-4 border-l border-transparent" href="#">Core Components</a>
+<a class="text-on-surface-variant text-body-md hover:text-primary transition-colors pl-4 border-l border-transparent" href="#">Implementation</a>
+<a class="text-on-surface-variant text-body-md hover:text-primary transition-colors pl-4 border-l border-transparent" href="#">Evaluation metrics</a>
+</nav>
+<div class="mt-lg pt-lg border-t border-outline-variant/30 flex flex-col gap-md">
+<button class="flex items-center gap-sm text-on-surface-variant text-label-md hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[18px] opacity-60 group-hover:opacity-100" data-icon="edit">edit</span>
+                        Edit this page
+                    </button>
+<button class="flex items-center gap-sm text-on-surface-variant text-label-md hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[18px] opacity-60 group-hover:opacity-100" data-icon="share">share</span>
+                        Share article
+                    </button>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevDocs | Engineering Blog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#181c22",
+                      "background": "#f9f9ff",
+                      "inverse-surface": "#2d3037",
+                      "tertiary-container": "#c05900",
+                      "on-secondary-fixed-variant": "#2d476f",
+                      "on-primary-fixed": "#001b3e",
+                      "on-primary-container": "#000512",
+                      "on-error": "#ffffff",
+                      "tertiary": "#9a4600",
+                      "on-surface-variant": "#414753",
+                      "tertiary-fixed": "#ffdbc9",
+                      "primary-fixed": "#d6e3ff",
+                      "surface-container-high": "#e6e8f1",
+                      "primary-fixed-dim": "#aac7ff",
+                      "on-tertiary-fixed": "#321200",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#0d0300",
+                      "on-secondary-container": "#3f5881",
+                      "on-secondary-fixed": "#001b3d",
+                      "surface-tint": "#005db8",
+                      "inverse-primary": "#aac7ff",
+                      "tertiary-fixed-dim": "#ffb68c",
+                      "outline": "#717785",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed-variant": "#00458d",
+                      "surface-container-low": "#f1f3fc",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#eef0fa",
+                      "primary-container": "#1275e2",
+                      "surface-container": "#ebedf7",
+                      "surface": "#f9f9ff",
+                      "secondary": "#465f88",
+                      "surface-container-highest": "#e0e2eb",
+                      "outline-variant": "#c1c6d5",
+                      "error": "#ba1a1a",
+                      "primary": "#005cb8",
+                      "surface-bright": "#f9f9ff",
+                      "secondary-fixed": "#d6e3ff",
+                      "secondary-container": "#b6d0ff",
+                      "on-surface": "#181c22",
+                      "on-tertiary-fixed-variant": "#763400",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#e0e2eb",
+                      "surface-dim": "#d7dae3",
+                      "secondary-fixed-dim": "#aec7f7",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "gutter": "16px",
+                      "xs": "4px",
+                      "margin": "24px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "code": ["monospace"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f9f9ff;
+            color: #181c22;
+        }
+        .prose-container {
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .sidebar-item-active {
+            background-color: #f1f3fc;
+            border-right: 3px solid #005cb8;
+        }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<nav class="bg-surface docked full-width top-0 sticky z-50 border-b border-outline-variant flex justify-between items-center w-full px-lg h-16">
+<div class="flex items-center gap-xl">
+<span class="text-headline-md font-bold tracking-tight text-on-surface">DevDocs</span>
+<div class="hidden md:flex items-center gap-lg font-label-md">
+<a class="text-primary font-semibold border-b-2 border-primary pb-2" href="#">Guides</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">API</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Blog</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Changelog</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative group">
+<div class="flex items-center bg-surface-container-low h-10 px-sm rounded-lg border border-outline-variant focus-within:ring-1 focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-outline mr-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-48" placeholder="Search docs..." type="text"/>
+<span class="text-outline text-label-md border border-outline-variant px-xs rounded">/</span>
+</div>
+</div>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+</nav>
+<div class="flex min-h-screen">
+<!-- SideNavBar (Left) -->
+<aside class="docked h-screen w-64 left-0 sticky top-16 border-r border-outline-variant bg-surface hidden md:flex flex-col py-md overflow-y-auto">
+<div class="px-lg mb-lg">
+<h2 class="text-on-surface font-bold text-label-md uppercase tracking-widest opacity-50">Documentation</h2>
+<p class="text-on-surface-variant text-label-md">v2.4.0</p>
+</div>
+<nav class="flex flex-col">
+<a class="text-on-surface-variant py-2.5 px-lg hover:bg-surface-container-low transition-all flex items-center gap-md" href="#">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span class="font-label-md">Introduction</span>
+</a>
+<a class="text-primary font-bold sidebar-item-active py-2.5 px-lg flex items-center gap-md" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="font-label-md">AI Engineering</span>
+</a>
+<a class="text-on-surface-variant py-2.5 px-lg hover:bg-surface-container-low transition-all flex items-center gap-md" href="#">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+<span class="font-label-md">Frontend</span>
+</a>
+<a class="text-on-surface-variant py-2.5 px-lg hover:bg-surface-container-low transition-all flex items-center gap-md" href="#">
+<span class="material-symbols-outlined text-[20px]">dns</span>
+<span class="font-label-md">Backend</span>
+</a>
+<a class="text-on-surface-variant py-2.5 px-lg hover:bg-surface-container-low transition-all flex items-center gap-md" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+<span class="font-label-md">Deployment</span>
+</a>
+</nav>
+<div class="mt-auto px-lg pt-lg border-t border-outline-variant">
+<div class="flex flex-col gap-sm">
+<a class="text-on-surface-variant flex items-center gap-sm hover:text-primary transition-colors text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+                        Community
+                    </a>
+<a class="text-on-surface-variant flex items-center gap-sm hover:text-primary transition-colors text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">code</span>
+                        GitHub
+                    </a>
+</div>
+<button class="mt-md w-full py-sm bg-primary text-on-primary rounded-lg font-label-md hover:opacity-90 active:scale-[0.98] transition-all">
+                    Submit Feedback
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 min-w-0 bg-surface">
+<!-- Hero Section -->
+<section class="prose-container py-xl px-lg">
+<div class="flex items-center gap-md mb-md">
+<div class="w-14 h-14 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Alex Rivera" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2jmTdQoeP0aEmo1r0NOczAmmCeLovjbzyz5XVYr3hcLLux-zdUiobd59e0LfqBxWwix0BUmMdOYmcVwYMyh0MRmhQrr_hTxlcuX0UvIaptfviYzQrhk0E0nSjQCyVILjIb7LaYawL8j1916wAuZG_Asijxr6Hr_85ND2alZ94j0trAKuUtXZZbjPEiX4KFbDgN3YqEWVAEJy2P_ilsKXCONM1NeQ1wyXihrZDE1QLS93lJbAH-pKZjPKWjIBN9gL83ddAyO9eV40"/>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Alex Rivera</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">@arivera_eng</p>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md max-w-2xl">Engineering lead focused on AI systems and distributed architecture.</h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                    Building the future of developer experience at the intersection of large language models and high-concurrency systems. Exploring the nuances of observability, scale, and the human element of engineering leadership.
+                </p>
+<div class="flex gap-md mt-lg">
+<button class="px-lg py-sm bg-primary text-on-primary rounded-lg font-label-md flex items-center gap-xs hover:shadow-lg transition-all">
+                        Subscribe <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<button class="px-lg py-sm border border-outline text-on-surface rounded-lg font-label-md hover:bg-surface-container-low transition-colors">
+                        View Resume
+                    </button>
+</div>
+</section>
+<!-- Featured Articles Grid (Softened Background) -->
+<section class="bg-surface-container-low/50 border-y border-outline-variant py-xl">
+<div class="prose-container px-lg">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h3 class="font-headline-md text-[20px] text-on-surface mb-xs">Featured Articles</h3>
+<p class="text-body-md text-on-surface-variant">Deep dives into technical systems.</p>
+</div>
+<a class="text-primary font-label-md text-label-md flex items-center gap-xs hover:underline" href="#">
+                            All articles <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Main Card -->
+<div class="md:col-span-2 group cursor-pointer bg-surface border border-outline-variant p-lg rounded-xl hover:border-primary/50 hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<span class="text-label-md font-bold text-primary uppercase tracking-tighter">Architecture</span>
+<span class="text-label-md text-on-surface-variant opacity-70">Oct 12, 2024</span>
+</div>
+<h4 class="font-headline-md text-on-surface group-hover:text-primary transition-colors mb-sm">Scaling Vector Databases for Multi-Tenant AI Applications</h4>
+<p class="text-body-md text-on-surface-variant mb-lg">How we handled 100M+ embeddings while maintaining sub-50ms latency across isolated customer namespaces.</p>
+<div class="flex items-center gap-sm">
+<div class="bg-surface-container-high px-sm py-xs rounded-lg text-label-md text-on-surface-variant">#AI</div>
+<div class="bg-surface-container-high px-sm py-xs rounded-lg text-label-md text-on-surface-variant">#Redis</div>
+<div class="bg-surface-container-high px-sm py-xs rounded-lg text-label-md text-on-surface-variant">#VectorDB</div>
+</div>
+</div>
+<div class="group cursor-pointer bg-surface border border-outline-variant p-lg rounded-xl hover:border-primary/50 hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<span class="text-label-md font-bold text-tertiary uppercase tracking-tighter">Engineering</span>
+<span class="text-label-md text-on-surface-variant opacity-70">Sep 28, 2024</span>
+</div>
+<h4 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors mb-sm">The Cost of Observability in Serverless</h4>
+<p class="text-body-md text-on-surface-variant">Analyzing the performance overhead of OpenTelemetry in highly distributed environments.</p>
+</div>
+<div class="group cursor-pointer bg-surface border border-outline-variant p-lg rounded-xl hover:border-primary/50 hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-md">
+<span class="text-label-md font-bold text-secondary uppercase tracking-tighter">Workflow</span>
+<span class="text-label-md text-on-surface-variant opacity-70">Aug 15, 2024</span>
+</div>
+<h4 class="font-headline-md text-[18px] text-on-surface group-hover:text-primary transition-colors mb-sm">Why We Switched to Monorepos</h4>
+<p class="text-body-md text-on-surface-variant">A pragmatic look at Turborepo and the cultural shift required for large engineering teams.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Notes -->
+<section class="prose-container py-xl px-lg">
+<div class="mb-lg">
+<h3 class="font-headline-md text-[20px] text-on-surface mb-xs">Digital Garden</h3>
+<p class="text-body-md text-on-surface-variant">Raw notes, fragments, and work-in-progress thoughts.</p>
+</div>
+<div class="space-y-md">
+<div class="flex gap-lg items-start border-b border-outline-variant pb-md group cursor-pointer">
+<span class="text-label-md text-outline mt-1 tabular-nums w-20">2024.11.02</span>
+<div class="flex-1">
+<a class="text-body-lg text-on-surface group-hover:text-primary transition-colors font-semibold" href="#">Fine-tuning Llama-3 for specific YAML schema generation</a>
+<p class="text-body-md text-on-surface-variant mt-xs">Experimental results using LoRA and various prompt engineering strategies.</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_right_alt</span>
+</div>
+<div class="flex gap-lg items-start border-b border-outline-variant pb-md group cursor-pointer">
+<span class="text-label-md text-outline mt-1 tabular-nums w-20">2024.10.24</span>
+<div class="flex-1">
+<a class="text-body-lg text-on-surface group-hover:text-primary transition-colors font-semibold" href="#">Rust for Pythonistas: Memory safety without the pain</a>
+<p class="text-body-md text-on-surface-variant mt-xs">A collection of patterns for bridging the gap between high-level logic and low-level control.</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_right_alt</span>
+</div>
+<div class="flex gap-lg items-start border-b border-outline-variant pb-md group cursor-pointer">
+<span class="text-label-md text-outline mt-1 tabular-nums w-20">2024.10.18</span>
+<div class="flex-1">
+<a class="text-body-lg text-on-surface group-hover:text-primary transition-colors font-semibold" href="#">Database isolation levels explained with emojis</a>
+<p class="text-body-md text-on-surface-variant mt-xs">Serializable vs Repeatable Read: why your data is lying to you.</p>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_right_alt</span>
+</div>
+</div>
+<!-- Callout (Soft Depth) -->
+<div class="mt-2xl p-md bg-surface-container-low rounded-xl border border-outline-variant flex gap-md items-center">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<p class="text-body-md text-on-surface-variant">
+                        I'm currently looking for contributors for <strong class="text-primary font-bold">OpenTrace</strong>, an AI-native observability tool. Check out the GitHub repo.
+                    </p>
+</div>
+</section>
+</main>
+<!-- SideNavBar (Right) -->
+<aside class="docked h-screen w-48 right-0 sticky top-16 hidden lg:flex flex-col gap-sm py-md ml-lg border-l border-outline-variant bg-surface">
+<h5 class="text-on-surface-variant font-bold text-label-md px-4 mb-sm uppercase tracking-wider opacity-60">On This Page</h5>
+<nav class="flex flex-col gap-sm">
+<a class="text-primary font-bold border-l-[3px] border-primary pl-4 text-body-md" href="#">Hero</a>
+<a class="text-on-surface-variant pl-4 hover:text-on-surface transition-colors text-body-md" href="#">Featured Articles</a>
+<a class="text-on-surface-variant pl-4 hover:text-on-surface transition-colors text-body-md" href="#">Digital Garden</a>
+<a class="text-on-surface-variant pl-4 hover:text-on-surface transition-colors text-body-md" href="#">Contributions</a>
+</nav>
+<div class="mt-xl px-4 pt-xl border-t border-outline-variant">
+<p class="text-label-md text-outline mb-md">Share this portal</p>
+<div class="flex gap-sm">
+<button class="w-9 h-9 rounded-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+<button class="w-9 h-9 rounded-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant">
+<div class="prose-container py-xl px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col gap-xs items-center md:items-start">
+<span class="text-headline-md text-[20px] text-on-surface font-bold">DevDocs</span>
+<p class="text-on-surface-variant text-label-md">© 2024 Alex Rivera. Engineering leadership &amp; architecture.</p>
+</div>
+<div class="flex gap-lg text-label-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Status</a>
+</div>
+</div>
+</footer>
+</body></html>
